@@ -2,6 +2,8 @@
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new/template/stalwart-1?referralCode=sLjDXb&utm_medium=integration&utm_source=button&utm_campaign=stalwart-1)
 
+> **Running a copy on Stalwart 0.16? Plan the move to 1.x.** Stalwart stopped releasing 0.16 after 0.16.27 (18 October 2026), so it gets no more security fixes. Stalwart 1.2.1 (25 November 2026) fixes holes that 0.16 likely shares, including a shared mailbox name that could inject lines into another user's IMAP session. 1.x can't open a 0.16 store, so this copy won't update to it. Follow [MIGRATING.md](https://github.com/two-workspaces/stalwart-v1/blob/main/MIGRATING.md) to move your data to the 1.x template, after taking a volume backup. New deploys already get 1.x.
+
 [Stalwart](https://stalw.art/) is an all-in-one mail and collaboration server written in Rust — SMTP, IMAP, POP3, JMAP, CalDAV, CardDAV, and a full web admin in a single binary, with built-in spam filtering, DKIM/SPF/DMARC/ARC, and encryption at rest.
 
 **Read this before deploying: on Railway this is a mailbox server, not an MX.** Inbound mail from the internet cannot reach it — Railway's TCP proxy answers on a port it assigns you, and an MX record cannot carry a port, so other mail servers have no way to connect. Outbound SMTP is blocked entirely below the Pro plan. What works well here is JMAP and the web admin over your Railway domain, IMAP and submission for your own clients through TCP proxies, and CalDAV/CardDAV. For a public mail domain that receives on port 25, run Stalwart somewhere you control the ports.
